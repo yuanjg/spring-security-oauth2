@@ -1,0 +1,41 @@
+server:
+  port: 8080
+  connection-timeout: 5000m
+  servlet:
+    session:
+      timeout: 60
+#数据源
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.32.128:3306/welkin_study?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: root
+    # 配置Druid连接池
+    type: com.alibaba.druid.pool.DruidDataSource
+  session:
+    store-type: redis
+    # 单位秒 默认最短一分钟 默认半小时
+    timeout: 300
+  redis:
+    host: 192.168.32.128
+    port: 6379
+    password:
+    database: 0
+
+
+
+#自定义权限配置
+welkin:
+  auth:
+    browser:
+      #loginPage: /demo-login.html # 这里可以配置成自己的非标准登录界面
+      loginType: JSON # REDIRECT & JSON
+      signupUrl: /welkin-signup.html
+    imageCaptcha:
+      interceptImageUrl: /user/*,/pay/confirm # 这些路径验证码也要拦截校验
+    social:
+      filterProcessesUrl: /auth
+      qq:
+        app-id: 101386962
+        app-secret: 2a0f820407df400b84a854d054be8b6a
